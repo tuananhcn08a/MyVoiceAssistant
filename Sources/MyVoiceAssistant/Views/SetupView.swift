@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SetupView: View {
-    @Environment(\.dismiss) private var dismiss
+    @Binding var currentView: MenuView
     @State private var sonioxKey = ""
     @State private var xaiKey = ""
     @State private var saveError: String?
@@ -38,15 +38,16 @@ struct SetupView: View {
             }
 
             HStack {
-                Button("Cancel") { dismiss() }
-                    .buttonStyle(.bordered)
+                Button("Cancel") {
+                    currentView = .settings
+                }
+                .buttonStyle(.bordered)
                 Spacer()
                 Button("Save") { saveKeys() }
                     .buttonStyle(.borderedProminent)
             }
         }
         .padding()
-        .frame(width: 360)
         .onAppear { loadExistingKeys() }
     }
 
@@ -63,7 +64,7 @@ struct SetupView: View {
             if !xaiKey.isEmpty {
                 try KeychainService.save(key: "apiKey", value: xaiKey, service: AppConfig.xaiAPIKeyService)
             }
-            dismiss()
+            currentView = .settings
         } catch {
             saveError = "Failed to save: \(error.localizedDescription)"
         }

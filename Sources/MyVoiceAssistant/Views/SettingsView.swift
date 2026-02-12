@@ -2,8 +2,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @Bindable var appState: AppState
-    @Environment(\.dismiss) private var dismiss
-    @State private var showSetupKeys = false
+    @Binding var currentView: MenuView
 
     var body: some View {
         VStack(spacing: 16) {
@@ -67,20 +66,18 @@ struct SettingsView: View {
 
             // API Keys
             Button("Manage API Keys...") {
-                showSetupKeys = true
+                currentView = .setup
             }
             .buttonStyle(.bordered)
 
             HStack {
                 Spacer()
-                Button("Done") { dismiss() }
-                    .buttonStyle(.borderedProminent)
+                Button("Done") {
+                    currentView = .main
+                }
+                .buttonStyle(.borderedProminent)
             }
         }
         .padding()
-        .frame(width: 360)
-        .sheet(isPresented: $showSetupKeys) {
-            SetupView()
-        }
     }
 }

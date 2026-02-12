@@ -1,5 +1,38 @@
 # Phase 1 MVP — Session Log
 
+## Session 2 — UI Fix + Soniox Debug
+
+**Date**: 2026-02-12
+**Agent**: Coordinator + swift-dev + researcher (tmux agent team)
+
+### Accomplished
+- **Tmux agent team setup**: Adopted pattern from myYoutubePostcastApp, updated CLAUDE.md + coordinator.md
+- **MenuBarExtra dismiss fix**: Replaced `.sheet` with inline view switching (enum MenuView) — sheets are fundamentally broken in MenuBarExtra
+- **Soniox error handling**: Replaced all silent `try?` with proper `do/catch`, added console logging
+- **Soniox WebSocket delegate**: Added URLSessionWebSocketDelegate to wait for handshake before sending
+- **Settings persistence**: Added UserDefaults for selectedEngine, selectedLanguage, stopWord, isLLMEnabled
+- **Soniox config debug**: Identified root cause of server rejection (code 1000)
+
+### Bug Found (T-024)
+- Soniox server rejects config due to extra fields (`enable_language_identification`, `max_endpoint_delay_ms`)
+- Working config found in `/Volumes/Extend_Disk/Ext_Download/voice-terminal-main`
+- Fix: remove extra fields, add `language_hints_strict: true`, order `["vi", "en"]`
+
+### Files Modified
+- `CLAUDE.md` — added tmux setup to session protocol
+- `.claude/agents/coordinator.md` — added tmux setup steps
+- `Sources/MyVoiceAssistant/Views/ContentView.swift` — inline view switching, WindowAccessor
+- `Sources/MyVoiceAssistant/Views/SettingsView.swift` — binding-based navigation
+- `Sources/MyVoiceAssistant/Views/SetupView.swift` — binding-based navigation
+- `Sources/MyVoiceAssistant/Services/STT/SonioxSTTService.swift` — error handling, delegate, debug logs
+- `Sources/MyVoiceAssistant/ViewModels/AppState.swift` — UserDefaults persistence
+
+### Next Steps
+- T-024: Fix Soniox config (remove extra fields, match voice-terminal format)
+- T-017: End-to-end testing with microphone
+
+---
+
 ## Session 1 — Full Implementation
 
 **Date**: 2026-02-12

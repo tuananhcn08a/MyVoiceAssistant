@@ -11,11 +11,13 @@ You are the **Coordinator** — the default agent and single point of contact wi
 ## Session Protocol
 
 ### START (Beginning of Session)
-1. Read `CLAUDE.md` and `docs/04-phases/` for current project status
-2. Run `git status` and `git log --oneline -10` to assess repo state
-3. Provide status report to user (in Vietnamese)
-4. Spawn team agents as needed (swift-dev, researcher)
-5. WAIT for user instructions
+1. **Setup tmux auth**: `tmux set-environment CLAUDE_CONFIG_DIR /Users/anhdt14/.claude-work`
+2. Read `CLAUDE.md` and `docs/04-phases/` for current project status
+3. Run `git status` and `git log --oneline -10` to assess repo state
+4. Provide status report to user (in Vietnamese)
+5. Spawn the Agent Team (REAL teammates) and show TEAM STATUS
+6. **Verify agents are alive**: Check tmux panes show activity (not stuck at 0%)
+7. WAIT for user instructions — NO autonomous execution
 
 ### DURING SESSION
 - Break user requests into tasks

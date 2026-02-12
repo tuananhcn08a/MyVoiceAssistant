@@ -1,9 +1,35 @@
 import SwiftUI
+import AppKit
+
+enum MenuView {
+    case main
+    case settings
+    case setup
+}
 
 struct ContentView: View {
     @Bindable var appState: AppState
+    @State private var currentView: MenuView = .main
 
     var body: some View {
+        Group {
+            switch currentView {
+            case .main:
+                mainView
+            case .settings:
+                SettingsView(appState: appState, currentView: $currentView)
+            case .setup:
+                SetupView(currentView: $currentView)
+            }
+        }
+        .frame(width: 320)
+        .background(WindowAccessor { window in
+            window.hidesOnDeactivate = false
+            window.level = .floating
+        })
+    }
+
+    private var mainView: some View {
         VStack(spacing: 12) {
             // Header
             HStack {
@@ -65,7 +91,7 @@ struct ContentView: View {
 
                 Spacer()
 
-                Button(action: { showSettings = true }) {
+                Button(action: { currentView = .settings }) {
                     Label("Settings", systemImage: "gear")
                         .font(.caption)
                 }
@@ -81,13 +107,7 @@ struct ContentView: View {
             }
         }
         .padding()
-        .frame(width: 320)
-        .sheet(isPresented: $showSettings) {
-            SettingsView(appState: appState)
-        }
     }
-
-    @State private var showSettings = false
 
     private var engineBadge: some View {
         Text(appState.selectedEngine.rawValue)
@@ -107,4 +127,21 @@ struct ContentView: View {
             return .gray
         }
     }
+}
+
+// MARK: - Window Accessor
+struct WindowAccessor: NSViewRepresentable {
+    let configure: (NSWindow) -> Void
+
+    func makeNSView(context: Context) -> NSView {
+        let view = NSView()
+        DispatchQueue.main.async {
+            if let window = view.window {
+                configure(window)
+            }
+        }
+        return view
+    }
+
+    func updateNSView(_ nsView: NSView, context: Context) {}
 }

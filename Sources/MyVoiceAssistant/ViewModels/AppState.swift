@@ -8,10 +8,31 @@ final class AppState {
     var transcript = ""
     var interimText = ""
     var statusMessage = "Idle"
-    var selectedEngine: STTEngine = AppConfig.defaultSTTEngine
-    var selectedLanguage: AppLanguage = AppConfig.defaultLanguage
-    var stopWord: String = AppConfig.defaultStopWord
-    var isLLMEnabled = false
+
+    var selectedEngine: STTEngine = AppConfig.defaultSTTEngine {
+        didSet {
+            UserDefaults.standard.set(selectedEngine.rawValue, forKey: "selectedEngine")
+        }
+    }
+
+    var selectedLanguage: AppLanguage = AppConfig.defaultLanguage {
+        didSet {
+            UserDefaults.standard.set(selectedLanguage.rawValue, forKey: "selectedLanguage")
+        }
+    }
+
+    var stopWord: String = AppConfig.defaultStopWord {
+        didSet {
+            UserDefaults.standard.set(stopWord, forKey: "stopWord")
+        }
+    }
+
+    var isLLMEnabled = false {
+        didSet {
+            UserDefaults.standard.set(isLLMEnabled, forKey: "isLLMEnabled")
+        }
+    }
+
     var errorMessage: String?
 
     private var audioEngine: AudioEngine
@@ -45,6 +66,23 @@ final class AppState {
                 }
             }
         )
+
+        // Load saved settings from UserDefaults
+        if let engineRaw = UserDefaults.standard.string(forKey: "selectedEngine"),
+           let engine = STTEngine(rawValue: engineRaw) {
+            self.selectedEngine = engine
+        }
+
+        if let languageRaw = UserDefaults.standard.string(forKey: "selectedLanguage"),
+           let language = AppLanguage(rawValue: languageRaw) {
+            self.selectedLanguage = language
+        }
+
+        if let savedStopWord = UserDefaults.standard.string(forKey: "stopWord") {
+            self.stopWord = savedStopWord
+        }
+
+        self.isLLMEnabled = UserDefaults.standard.bool(forKey: "isLLMEnabled")
     }
 
     func toggleListening() async {

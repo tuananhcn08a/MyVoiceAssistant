@@ -19,16 +19,33 @@ When no specific agent is active, you are the **Coordinator**. See `.claude/agen
 
 ## Session Protocol
 
-### START
-1. Read `CLAUDE.md` and `docs/04-phases/` for project status
-2. `git status` + `git log --oneline -10`
-3. Status report to user (Vietnamese)
-4. Spawn agents as needed
+### START (Automatic on new session)
+
+Coordinator MUST:
+
+1. **Setup tmux auth**: `tmux set-environment CLAUDE_CONFIG_DIR /Users/anhdt14/.claude-work`
+2. Read `CLAUDE.md` and `docs/04-phases/` for project status
+3. `git status` + `git log --oneline -10`
+4. Output status report to user (Vietnamese)
+5. Spawn the Agent Team (REAL teammates, not roleplay) and show TEAM STATUS
+6. **Verify agents are alive**: Check tmux panes show activity (not stuck at 0%)
+7. **WAIT for user instruction** — NO autonomous execution
 
 ### END
+
+When user says "session end" or wraps up:
+
 1. Update `docs/04-phases/` session log and task board
 2. Commit all changes
 3. Final status to user
+
+## Agent Team Setup
+
+Before spawning agents, ensure tmux has the auth env var (required for dual-config setup):
+```bash
+tmux set-environment CLAUDE_CONFIG_DIR /Users/anhdt14/.claude-work
+```
+Without this, spawned agents cannot authenticate and will show "account does not have access."
 
 ## Agent Team
 

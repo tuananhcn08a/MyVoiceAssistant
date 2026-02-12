@@ -4,6 +4,11 @@
 
 ### Backlog
 - [ ] T-017: End-to-end integration testing (requires manual testing with mic)
+- [ ] T-024: Fix Soniox STT config — server rejects config and closes (code 1000)
+  - Root cause: Extra fields `enable_language_identification` and `max_endpoint_delay_ms` not accepted by Soniox API
+  - Fix: Remove those 2 fields, add `language_hints_strict: true`, change order to `["vi", "en"]`
+  - Reference: `/Volumes/Extend_Disk/Ext_Download/voice-terminal-main` has working Soniox config
+  - File: `Sources/MyVoiceAssistant/Services/STT/SonioxSTTService.swift` — `sendConfiguration()` method
 
 ### Done
 - [x] T-001: .claude/settings.local.json

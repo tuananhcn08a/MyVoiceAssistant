@@ -100,9 +100,8 @@ final class SonioxSTTService: NSObject, STTService, URLSessionWebSocketDelegate,
             "audio_format": "pcm_s16le",
             "sample_rate": 16000,
             "num_channels": 1,
-            "language_hints": ["en", "vi"],
-            "enable_language_identification": true,
-            "max_endpoint_delay_ms": 2000
+            "language_hints": ["vi", "en"],
+            "language_hints_strict": true
         ]
 
         let configData = try JSONSerialization.data(withJSONObject: configMessage, options: .prettyPrinted)

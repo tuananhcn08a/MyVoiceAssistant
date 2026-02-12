@@ -21,15 +21,20 @@ When no specific agent is active, you are the **Coordinator**. See `.claude/agen
 
 ### START (Automatic on new session)
 
-Coordinator MUST:
+Coordinator MUST do ALL steps — do NOT skip any:
 
 1. **Setup tmux auth**: `tmux set-environment CLAUDE_CONFIG_DIR /Users/anhdt14/.claude-work`
 2. Read `CLAUDE.md` and `docs/04-phases/` for project status
 3. `git status` + `git log --oneline -10`
 4. Output status report to user (Vietnamese)
-5. Spawn the Agent Team (REAL teammates, not roleplay) and show TEAM STATUS
-6. **Verify agents are alive**: Check tmux panes show activity (not stuck at 0%)
-7. **WAIT for user instruction** — NO autonomous execution
+5. **Spawn the Agent Team** — this is MANDATORY, do NOT skip:
+   - Call `TeamCreate` with team_name like `myvoice-sessionN`
+   - Call `Task` (subagent_type=`swift-dev`, team_name=above) to spawn swift-dev in tmux pane
+   - Call `Task` (subagent_type=`researcher`, team_name=above) to spawn researcher in tmux pane
+   - Both agents should read their `.claude/agents/*.md` and confirm ready
+6. **Verify agents are alive**: `tmux list-panes` — confirm panes exist and show activity
+7. Show **TEAM STATUS** table to user (Agent | Pane | Status)
+8. **WAIT for user instruction** — NO autonomous execution
 
 ### END
 

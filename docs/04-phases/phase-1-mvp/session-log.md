@@ -1,5 +1,25 @@
 # Phase 1 MVP — Session Log
 
+## Session 3 — Fix Soniox Config
+
+**Date**: 2026-02-12
+**Agent**: Coordinator + swift-dev + researcher (agent team)
+
+### Accomplished
+- **T-024 Fixed**: Soniox STT config matched to working reference from voice-terminal project
+  - Removed invalid fields: `enable_language_identification`, `max_endpoint_delay_ms`
+  - Added `language_hints_strict: true`
+  - Reordered `language_hints` to `["vi", "en"]` (Vietnamese priority)
+- **Agent team workflow**: researcher investigated reference project, swift-dev applied fix
+
+### Files Modified
+- `Sources/MyVoiceAssistant/Services/STT/SonioxSTTService.swift` — fixed `sendConfiguration()` config
+
+### Next Steps
+- T-017: End-to-end testing with microphone
+
+---
+
 ## Session 2 — UI Fix + Soniox Debug
 
 **Date**: 2026-02-12

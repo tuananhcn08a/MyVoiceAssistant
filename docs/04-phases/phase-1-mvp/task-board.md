@@ -1,9 +1,9 @@
 # Phase 1 MVP — Task Board
 
-## Status: Complete
+## Status: Closed
 
 ### Backlog
-- [ ] T-017: End-to-end integration testing (requires manual testing with mic)
+- [ ] T-017: End-to-end integration testing (moved to Phase 2)
 
 ### Done
 - [x] T-024: Fix Soniox STT config — removed invalid fields, added language_hints_strict
@@ -28,3 +28,5 @@
 - [x] T-020: SetupView.swift
 - [x] T-021: LLMService.swift
 - [x] T-022: SettingsView.swift
+- [x] T-025: README.md, Makefile, build-app.sh, LICENSE
+- [x] T-026: Phase 1 documentation close-out

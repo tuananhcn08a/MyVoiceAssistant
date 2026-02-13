@@ -6,8 +6,9 @@ MyVoiceAssistant is a macOS menubar app that converts your voice to text and str
 
 ## Requirements
 
-- macOS 13 (Ventura) or later
+- macOS 14 (Sonoma) or later
 - Microphone access
+- Speech Recognition permission
 - Accessibility permission (for keystroke injection)
 
 ## Quick Start
@@ -55,3 +56,22 @@ Access settings via the gear icon in the menubar popup:
 - **Stop Word**: Customize the "thank you" trigger (default: "thank you")
 - **Language**: Select Vietnamese or English
 - **API Keys**: Manage Soniox and xAI API keys
+
+## Build & Install from Source
+
+```bash
+# Clone the repository
+git clone https://github.com/AceDroidX/MyVoiceAssistant.git
+cd MyVoiceAssistant
+
+# Build and create .app bundle
+make app
+
+# Install to /Applications
+make install
+```
+
+Alternatively, build and run directly:
+```bash
+make run
+```

@@ -44,6 +44,38 @@ When user says "session end" or wraps up:
 2. Commit all changes
 3. Final status to user
 
+## Phase Closing Protocol
+
+When user requests to close a phase, perform ALL of the following:
+
+1. **Documentation close-out** — update session log, task board, README, etc.
+2. **Release build** — build a final release for the phase:
+   - `make app` (or equivalent build command)
+   - Copy `.app` bundle to `releases/phase-X/`
+   - The `.app` binary is gitignored (not committed)
+3. **Release notes** — create `releases/phase-X/RELEASE-NOTES.md` with:
+   - Phase name and version
+   - Build date
+   - What's included (features, fixes)
+   - Known issues / limitations
+   - Build instructions to reproduce
+4. **Commit** release notes (binary is gitignored)
+
+### Release Directory Structure
+
+```
+releases/
+├── phase-1-mvp/
+│   ├── RELEASE-NOTES.md        ← committed to git
+│   └── MyVoiceAssistant.app    ← gitignored (build locally with make app)
+├── phase-2/
+│   ├── RELEASE-NOTES.md
+│   └── MyVoiceAssistant.app
+└── ...
+```
+
+This lets the user browse `releases/` to see all phases, read release notes, and rebuild any version from the corresponding git tag/commit.
+
 ## Agent Team Setup
 
 Before spawning agents, ensure tmux has the auth env var (required for dual-config setup):

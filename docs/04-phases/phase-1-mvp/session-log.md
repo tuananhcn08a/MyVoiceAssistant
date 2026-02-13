@@ -1,5 +1,42 @@
 # Phase 1 MVP — Session Log
 
+## Session 4 — Phase 1 Close-Out
+
+**Date**: 2026-02-13
+**Agent**: Coordinator
+
+### Accomplished
+- **T-025**: Created root README.md with full project documentation
+- **T-025**: Created Scripts/build-app.sh for .app bundle generation
+- **T-025**: Created Makefile with build/app/install/run/clean targets
+- **T-025**: Added MIT LICENSE
+- **T-026**: Fixed USER-GUIDE.md (macOS 13 → macOS 14, added build instructions)
+- **T-026**: Updated .gitignore (added build/, *.app, .DS_Store)
+- **T-026**: Marked Phase 1 task board as Closed
+- **T-026**: Created Phase 2 scaffold (task-board.md + session-log.md)
+
+### Files Created
+- `README.md` — root project documentation
+- `Scripts/build-app.sh` — .app bundle build script
+- `Makefile` — build system targets
+- `LICENSE` — MIT license
+- `docs/04-phases/phase-2/task-board.md` — Phase 2 scaffold
+- `docs/04-phases/phase-2/session-log.md` — Phase 2 scaffold
+
+### Files Modified
+- `.gitignore` — added build output patterns
+- `docs/USER-GUIDE.md` — fixed macOS version, added build instructions
+- `docs/04-phases/phase-1-mvp/task-board.md` — marked Closed
+- `docs/04-phases/phase-1-mvp/session-log.md` — added Session 4 entry
+
+### Phase 1 Summary
+- **16 Swift files**, ~1,426 LOC
+- **Build**: `swift build` passing
+- **Distribution**: `make app` creates installable .app bundle
+- **Status**: Phase 1 Closed — moving to Phase 2
+
+---
+
 ## Session 3 — Fix Soniox Config
 
 **Date**: 2026-02-12

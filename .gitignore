@@ -49,6 +49,14 @@ playground.xcworkspace
 
 Carthage/Build/
 
+# App build output
+build/
+*.app
+.DS_Store
+
+# Release binaries (keep RELEASE-NOTES.md, ignore .app bundles)
+releases/**/*.app
+
 # fastlane
 #
 # It is recommended to not store the screenshots in the git repo.

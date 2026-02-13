@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:MyVoiceAssistant}",
+            "name": "Debug MyVoiceAssistant",
+            "target": "MyVoiceAssistant",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug MyVoiceAssistant"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:MyVoiceAssistant}",
+            "name": "Release MyVoiceAssistant",
+            "target": "MyVoiceAssistant",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release MyVoiceAssistant"
+        }
+    ]
+}
